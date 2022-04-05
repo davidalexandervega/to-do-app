@@ -1,0 +1,26 @@
+{
+    "name": "title",
+    "description": "",
+    "version": "1.0.0",
+    "scripts": {
+      "dev": "nodemon app"
+    },
+    "repository": {
+      "type": "git",
+      "url": ""
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "express": "^4.17.3",
+      "mongoose": "^6.2.9",
+      "cors": "^2.8.5"
+    },
+    "devDependencies": {
+      "nodemon": "^2.0.15"
+    },
+    "bugs": {
+    },
+    "homepage": ""
+  }
