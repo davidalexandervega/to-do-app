@@ -2,12 +2,15 @@ const express = require('express');
 const router = express.Router();
 const { getTodos, createTodo, updateTodo, deleteTodo } = require('../controllers/todoController');
 
-router.get('/', getTodos);
+// import the auth middleware to protect private routes:
+const {protect} = require('../middleware/authMiddleware');
 
-router.post('/', createTodo);
+router.get('/', protect, getTodos);
 
-router.put('/:id', updateTodo);
+router.post('/', protect, createTodo);
 
-router.delete('/:id', deleteTodo);
+router.put('/:id', protect, updateTodo);
+
+router.delete('/:id', protect, deleteTodo);
 
 module.exports = router;

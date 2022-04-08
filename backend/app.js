@@ -5,6 +5,9 @@ const dotenv = require('dotenv').config()
 const {errorHandler} = require('./middleware/errorMiddleware');
 const PORT = process.env.PORT || 5000;
 
+const connectDB = require('./config/db');
+connectDB();
+
 // you need to use cors in order to make a request
 // across different ports:
 const cors = require('cors');
@@ -22,6 +25,7 @@ app.get('/api/message', (req, res) => {
 });
 
 app.use('/api/todos', require('./routes/todoRoutes'));
+app.use('/api/users', require('./routes/userRoutes'));
 
 app.use(errorHandler);
 

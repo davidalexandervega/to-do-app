@@ -1,35 +1,99 @@
 const asyncHandler = require('express-async-handler');
 
+const Todo = require('../models/todoModel');
+const User = require('../models/userModel');
+
 // description: get to-dos
 // route: GET /api/todos
 // access: private
 const getTodos = asyncHandler(async (req, res) => {
-    res.json({message: `get to-do!`});
+    // user is a key for each to-do item, and we have req.user.id
+    // via the authorization middleware, so we can find any user's
+    // to-dos like this:
+    const todos = await Todo.find({ user: req.user.id });
+    res.status(200).json(todos);
 });
 
 // description: create to-do
 // route: POST /api/todos
 // access: private
 const createTodo = asyncHandler(async (req, res) => {
-    if (!req.body.text) {
+    if (!req.body.title || !req.body.description) {
         res.status(400);
-        throw new Error ('please add text');
+        throw new Error ('please add the required field(s)');
     }
-    res.json({message: `get to-do!`});
+
+    const todo = await Todo.create({
+        title: req.body.title,
+        description: req.body.description,
+        dueDate: req.body.dueDate ? req.body.dueDate : null,
+        // again, req.user.id exists on the login token:
+        user: req.user.id
+    })
+    res.status(200).json(todo);
 });
 
 // description: update to-do
 // route: PUT /api/todos/:id
 // access: private
 const updateTodo = asyncHandler(async (req, res) => {
-    res.json({message: `get to-do!`});
+    const todo = await Todo.findById(req.params.id);
+
+    if (!todo) {
+        res.status(400);
+        throw new Error ('to-do not found');
+    }
+
+    // req.user is not the same as the original User object, since we
+    // cut the password out when we used it in the middleware.
+    // so let's recapture the User object to verify:
+    const user = await User.findById(req.user.id);
+
+    if (!user) {
+        res.status(401);
+        throw new Error('user not found');
+    }
+
+    // verifies that the logged in user matches the to-do's user:
+    if (todo.user.toString() !== user.id) {
+        res.status(401);
+        throw new Error('user not authorized');
+    }
+
+    const updatedTodo = await Todo.findByIdAndUpdate(req.params.id, req.body, {new:true});
+
+    res.status(200).json(updatedTodo);
 });
 
 // description: delete to-do
 // route: DELETE /api/todos/:id
 // access: private
 const deleteTodo = asyncHandler(async (req, res) => {
-    res.json({message: `get to-do!`});
+    const todo = await Todo.findById(req.params.id);
+
+    if (!todo) {
+        res.status(400);
+        throw new Error ('to-do not found');
+    }
+
+    // req.user is not the same as the original User object, since we
+    // cut the password out when we used it in the middleware.
+    // so let's recapture the User object to verify:
+    const user = await User.findById(req.user.id);
+
+    if (!user) {
+        res.status(401);
+        throw new Error('user not found');
+    }
+
+    // verifies that the logged in user matches the to-do's user:
+    if (todo.user.toString() !== user.id) {
+        res.status(401);
+        throw new Error('user not authorized');
+    }
+
+    await todo.remove();
+    res.status(200).json({id: req.params.id});
 });
 
 module.exports = {
