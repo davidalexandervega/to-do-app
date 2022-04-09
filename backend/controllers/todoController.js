@@ -43,19 +43,15 @@ const updateTodo = asyncHandler(async (req, res) => {
         res.status(400);
         throw new Error ('to-do not found');
     }
-
-    // req.user is not the same as the original User object, since we
-    // cut the password out when we used it in the middleware.
-    // so let's recapture the User object to verify:
-    const user = await User.findById(req.user.id);
-
-    if (!user) {
+    
+    // note that we already have req.user via the authorization middlware:
+    if (!req.user) {
         res.status(401);
         throw new Error('user not found');
     }
 
     // verifies that the logged in user matches the to-do's user:
-    if (todo.user.toString() !== user.id) {
+    if (todo.user.toString() !== req.user.id) {
         res.status(401);
         throw new Error('user not authorized');
     }
@@ -76,18 +72,14 @@ const deleteTodo = asyncHandler(async (req, res) => {
         throw new Error ('to-do not found');
     }
 
-    // req.user is not the same as the original User object, since we
-    // cut the password out when we used it in the middleware.
-    // so let's recapture the User object to verify:
-    const user = await User.findById(req.user.id);
-
-    if (!user) {
+    // note that we already have req.user via the authorization middlware:
+    if (!req.user) {
         res.status(401);
         throw new Error('user not found');
     }
 
     // verifies that the logged in user matches the to-do's user:
-    if (todo.user.toString() !== user.id) {
+    if (todo.user.toString() !== req.user.id) {
         res.status(401);
         throw new Error('user not authorized');
     }

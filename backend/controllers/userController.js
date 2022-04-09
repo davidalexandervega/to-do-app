@@ -60,6 +60,9 @@ const loginUser = asyncHandler(async (req, res) => {
     // use bcrypt method to compare request password to stored password:
     if (user && (await bcrypt.compare(password, user.password))) {
         res.json({
+            // important to note here that '.id' is a mongoose virtual
+            // string representation of the '._id' field in mongoDB, and
+            // that's how the two differ:
             _id: user.id,
             name: user.username,
             email: user.email,
@@ -75,15 +78,9 @@ const loginUser = asyncHandler(async (req, res) => {
 // route: GET /api/users/me
 // access: private
 const getMe = asyncHandler(async (req, res) => {
-    // req.user.id should be accessible since this request has passed through
+    // req.user should be accessible since this request has passed through
     // the authorization middleware:
-    const { _id, name, email } = await User.findById(req.user.id);
-
-    res.status(200).json({
-        id: _id,
-        name,
-        email
-    });
+    res.status(200).json(req.user);
 });
 
 // function to generate & sign jwt token:

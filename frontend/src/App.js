@@ -1,15 +1,23 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React from 'react';
-import './styles.scss'
+import './global.scss'
 
-import X from './X.js'
+import Header from "./components/Header";
+import Sidebar from "./components/Sidebar";
+import Dashboard from "./views/Dashboard";
+import Login from "./views/Login";
+import Register from "./views/Register";
 
 const App = () => {
 
   return (
     <BrowserRouter>
+    <Header />
+    <Sidebar />
       <Routes>
-        <Route path="/" element={<X />} />
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </BrowserRouter>
   )
