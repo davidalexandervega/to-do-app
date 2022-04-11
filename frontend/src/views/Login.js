@@ -1,5 +1,9 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
+import {login, reset} from '../features/auth/authSlice';
 
 const Login = () => {
 
@@ -9,6 +13,25 @@ const Login = () => {
     });
 
     const { email, password, } = formData;
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    // retrieving from the global state:
+    const {user, isError, isSuccess, message} = useSelector((state) => state.auth);
+
+    useEffect(() => {
+        if (isError) {
+            console.log(message);
+        }
+
+        if (isSuccess) {
+            navigate('/');
+        }
+
+        dispatch(reset());
+
+    }, [user, isError, isSuccess, message, navigate, dispatch])
 
     const onChange = (e) => {
         setFormData((prevState) => ({
@@ -20,7 +43,14 @@ const Login = () => {
     }
 
     const onSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault();
+
+        const userData = {
+            email,
+            password
+        };
+
+        dispatch(login(userData));
     };
 
     return (
@@ -31,11 +61,11 @@ const Login = () => {
 
             <section className='form'>
                 <form onSubmit={onSubmit}>
-                    <label for='email'>email </label>
+                    <label htmlFor='email'>email </label>
                     <input type='text' className='formControl' id='email' 
                     name='email' value={email} onChange={onChange}/>
 
-                    <label for='password'>password </label>
+                    <label htmlFor='password'>password </label>
                     <input type='password' className='formControl' id='password' 
                     name='password' value={password} onChange={onChange}/>
 
