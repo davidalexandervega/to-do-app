@@ -11,8 +11,7 @@ const todoSchema = mongoose.Schema({
         required: true
     },
     notes: {
-        type: String,
-        required: true
+        type: String
     },
     dueDate: {
         type: Date

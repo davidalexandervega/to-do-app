@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
+import NewTodo from '../components/NewTodo';
+
 const Dashboard = () => {
     const navigate = useNavigate();
 
@@ -17,7 +19,9 @@ const Dashboard = () => {
     }, [user, navigate]);
 
     return (
-        <div className='dashboard'>dashboard</div>
+        <div className='dashboard'>
+            <NewTodo />
+        </div>
     )
 }
 
