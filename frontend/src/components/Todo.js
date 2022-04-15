@@ -66,34 +66,35 @@ const Todo = ({todo}) => {
     return (
         <>{editMode ? 
         <div className='todo'>
-                <label htmlFor='title'>title </label>
+            <div className='editTodoForm'>
+                <label htmlFor='title'><b>title</b> </label>
                 <input type='text' className='formControl' id='title'
                 name='title' value={title} onChange={onChange}/>
 
-                <label htmlFor='notes'>notes </label>
+                <label htmlFor='notes'><b>notes</b> </label>
                 <input type='text' className='formControl' id='notes'
                 name='notes' value={notes} onChange={onChange}/>
 
-                <label htmlFor='dueDate'>due date </label>
+                <label htmlFor='dueDate'><b>due date</b> </label>
                 <input type='date' className='formControl' id='dueDate'
                 name='dueDate' value={dueDate} onChange={onChange}/>
+            </div>
 
-                <div className='todoActions'>
+            <div className='todoActions'>
                 <span onClick={() => cancelEdit()} className='cancelEdit'>
-                <svg width="16" height="16" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M7 10.625H14.2C14.2 10.625 14.2 10.625 14.2 10.625C14.2 10.625 17 10.625 17 13.625C17 17 14.2 17 14.2 17H13.4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M10.5 14L7 10.625L10.5 7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-
+                    <svg width="16" height="16" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 10.625H14.2C14.2 10.625 14.2 10.625 14.2 10.625C14.2 10.625 17 10.625 17 13.625C17 17 14.2 17 14.2 17H13.4" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M10.5 14L7 10.625L10.5 7" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
                 </span>
-                    <span onClick={() => confirmEdit()} className='confirmEdit'>
-                        <svg width="16" height="16" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M7 12.5L10 15.5L17 8.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
-                        <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                    </span>
-                </div>
+                <span onClick={() => confirmEdit()} className='confirmEdit'>
+                    <svg width="16" height="16" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 12.5L10 15.5L17 8.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                </span>
+            </div>
         </div>
          :
         <div className='todo'>

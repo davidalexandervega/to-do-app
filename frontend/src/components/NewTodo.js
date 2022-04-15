@@ -3,6 +3,8 @@ import {useDispatch} from 'react-redux';
 
 import {createTodo} from '../features/todos/todoSlice'
 
+import './NewTodo.scss'
+
 const NewTodo = () => {
     
     const [formData, setFormData] = useState({
@@ -24,8 +26,7 @@ const NewTodo = () => {
         }))
     };
     
-    const onSubmit = (e) => {
-        e.preventDefault();
+    const onSubmit = () => {
 
         const todoData = {
             title,
@@ -40,25 +41,38 @@ const NewTodo = () => {
             title: '',
             notes: '',
             dueDate: ''
-        }))
+        }));
     };
 
     return (
         <div className='newTodo'>
-            <form onSubmit={onSubmit}>
-                <label htmlFor='title'>title </label>
+            <div className='newTodoHeader'><b>add a new to-do</b></div>
+            <form className='todoForm'>
+                <div className='formItem'>
+                <label htmlFor='title'><b>title </b></label>
                 <input type='text' className='formControl' id='title'
                 name='title' value={title} onChange={onChange}/>
+                </div>
 
-                <label htmlFor='notes'>notes </label>
+                <div className='formItem'>
+                <label htmlFor='notes'><b>notes </b></label>
                 <input type='text' className='formControl' id='notes'
                 name='notes' value={notes} onChange={onChange}/>
+                </div>
 
-                <label htmlFor='dueDate'>due date </label>
+                <div className='formItem'>
+                <label htmlFor='dueDate'><b>due date </b></label>
                 <input type='date' className='formControl' id='dueDate'
                 name='dueDate' value={dueDate} onChange={onChange}/>
+                </div>
 
-                <button type='submit' className='submitForm'>add</button>
+                <span onClick={() => onSubmit()} className='submitTodo'>
+                <svg width="16" height="16" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 12H12M16 12H12M12 12V8M12 12V16" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+
+                </span>
             </form>
         </div>
     )

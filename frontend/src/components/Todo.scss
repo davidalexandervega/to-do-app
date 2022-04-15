@@ -1,5 +1,5 @@
 .todos {
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 .todo {
@@ -10,16 +10,33 @@
     width: 70vw;
     border: 1px solid black;
     box-shadow: 4px 4px black;
+    background-color: whitesmoke;
 }
 
 .todoHeader {
+    margin-left: 1px;
+    margin-right: 1px;
     display: flex;
     justify-content: space-between;
+}
+
+.todoNotes {
+    margin-left: 1px;
 }
 
 .todoActions {
     display: flex;
     justify-content: flex-end;
+    gap: 1px;
+    margin-top: 1px;
+    margin-right: 1px;
+}
+
+.editTodoForm {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1px;
+    margin-right: 1px;
 }
 
 .deleteTodo:hover, .cancelEdit:hover {

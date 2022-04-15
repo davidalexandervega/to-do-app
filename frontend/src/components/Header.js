@@ -18,16 +18,16 @@ const Header = () => {
     return (
         <header className='header'>
             <div className='dashboardLink'>
-                <Link to='/'>dashboard</Link>
+                <Link to='/'><b>dashboard</b></Link>
             </div>
             <ul className='headerLinks'>
-                {user ? (<li><div className='logout' onClick={onLogout}>logout</div></li>) : 
+                {user ? (<li><div className='logout' onClick={onLogout}><b>logout</b></div></li>) : 
                 (<>
                     <li>
-                        <Link to='/login'>login</Link>
+                        <Link to='/login'><b>login</b></Link>
                     </li>
                     <li>
-                        <Link to='/register'>register</Link>
+                        <Link to='/register'><b>register</b></Link>
                     </li>
                 </>)}
             </ul>
