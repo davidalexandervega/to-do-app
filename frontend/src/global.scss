@@ -46,4 +46,8 @@ a:hover, .logout:hover {
 .dashboard, .loginPage, .registerPage {
     /* margin-left is relative to the sidebar width */
     margin-left: 10vw;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

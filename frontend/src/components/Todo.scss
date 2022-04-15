@@ -1,0 +1,38 @@
+.todos {
+    margin-top: 30px;
+}
+
+.todo {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    max-width: 400px;
+    width: 70vw;
+    border: 1px solid black;
+    box-shadow: 4px 4px black;
+}
+
+.todoHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+.todoActions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.deleteTodo:hover, .cancelEdit:hover {
+    cursor: pointer;
+    color: red;
+}
+
+.editTodo:hover {
+    cursor: pointer;
+    color: goldenrod;
+}
+
+.confirmEdit:hover {
+    cursor: pointer;
+    color: green;
+}

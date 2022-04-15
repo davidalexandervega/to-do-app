@@ -34,7 +34,14 @@ const NewTodo = () => {
         }
 
         dispatch(createTodo(todoData));
-    }
+
+        setFormData((prevState) => ({
+            ...prevState,
+            title: '',
+            notes: '',
+            dueDate: ''
+        }))
+    };
 
     return (
         <div className='newTodo'>

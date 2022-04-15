@@ -20,8 +20,56 @@ const createTodo = async (todoData, token) => {
     return response.data;
 };
 
+const fetchTodos = async (token) => {
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    };
+
+    const response = await axios.get(API_URL, config);
+
+    return response.data;
+};
+
+const editTodo = async (todoData, token) => {
+
+    const {title, notes, dueDate, id} = todoData
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    };
+
+    const response = await axios.put(API_URL + id, {
+        title,
+        notes,
+        dueDate
+    }, config);
+
+    return response.data;
+};
+
+const deleteTodo = async (todoID, token) => {
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    };
+
+    const response = await axios.delete(API_URL + todoID, config);
+
+    return response.data;
+};
+
 const todoService = {
-    createTodo
+    createTodo,
+    fetchTodos,
+    editTodo,
+    deleteTodo
 };
 
 export default todoService;
