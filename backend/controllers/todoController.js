@@ -18,15 +18,16 @@ const getTodos = asyncHandler(async (req, res) => {
 // route: POST /api/todos
 // access: private
 const createTodo = asyncHandler(async (req, res) => {
-    if (!req.body.title || !req.body.notes) {
+    if (!req.body.title) {
         res.status(400);
         throw new Error ('please add the required field(s)');
     }
 
     const todo = await Todo.create({
         title: req.body.title,
-        notes: req.body.notes,
+        notes: req.body.notes ? req.body.notes : '',
         dueDate: req.body.dueDate ? req.body.dueDate : null,
+        list: req.body.list ? req.body.list : null,
         // again, req.user.id exists on the login token:
         user: req.user.id
     })

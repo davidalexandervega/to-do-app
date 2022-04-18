@@ -24,8 +24,10 @@ app.get('/api/message', (req, res) => {
     res.send('hello');
 });
 
-app.use('/api/todos', require('./routes/todoRoutes'));
 app.use('/api/users', require('./routes/userRoutes'));
+app.use('/api/lists', require('./routes/listRoutes'));
+app.use('/api/todos', require('./routes/todoRoutes'));
+
 
 app.use(errorHandler);
 

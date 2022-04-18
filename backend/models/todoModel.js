@@ -6,15 +6,21 @@ const todoSchema = mongoose.Schema({
         required: true,
         ref: 'User'
     },
+    list: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: false,
+        ref: 'List',
+        default: null
+    },
     title: {
         type: String,
         required: true
     },
     notes: {
-        type: String
+        type: String,
     },
     dueDate: {
-        type: Date
+        type: String,
     },
 },
 {

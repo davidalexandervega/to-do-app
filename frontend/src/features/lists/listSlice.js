@@ -1,20 +1,20 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
-import todoService from './todoService';
+import listService from './listService';
 
 const initialState = {
-    todos: [],
+    lists: [],
     isError: false,
     isSuccess: false,
     message: ''
 };
 
-export const createTodo = createAsyncThunk('todos/create', async (todoData, thunkAPI) => {
+export const createList = createAsyncThunk('lists/create', async (listData, thunkAPI) => {
     try {
         // the thunkAPI object also contains a getState() method that we can
         // use to retrieve any state from the global store. we need the token
-        // since the create to-do route is protected:
+        // since the create list route is protected:
         const token = thunkAPI.getState().auth.user.token;
-        return await todoService.createTodo(todoData, token);
+        return await listService.createList(listData, token);
     } catch (error) {
         // checking if any errors, and using the message as the payload
         // if there is one:
@@ -25,38 +25,38 @@ export const createTodo = createAsyncThunk('todos/create', async (todoData, thun
 
 // note that in order to pass in just the thunkAPI, we need to pass an underscore
 // in first as an empty argument:
-export const fetchTodos = createAsyncThunk('/todos/fetchAll', async (_, thunkAPI) => {
+export const fetchLists = createAsyncThunk('/lists/fetchAll', async (_, thunkAPI) => {
     try {
         const token = thunkAPI.getState().auth.user.token;
-        return await todoService.fetchTodos(token);
+        return await listService.fetchLists(token);
     } catch (error) {
         const message =  (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
         return thunkAPI.rejectWithValue(message);
     }
 });
 
-export const editTodo = createAsyncThunk('todos/edit', async (todoData, thunkAPI) => {
+export const editList = createAsyncThunk('lists/edit', async (listData, thunkAPI) => {
     try {
         const token = thunkAPI.getState().auth.user.token;
-        return await todoService.editTodo(todoData, token);
+        return await listService.editList(listData, token);
     } catch (error) {
         const message =  (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
         return thunkAPI.rejectWithValue(message);
     }
 });
 
-export const deleteTodo = createAsyncThunk('todos/delete', async (id, thunkAPI) => {
+export const deleteList = createAsyncThunk('lists/delete', async (id, thunkAPI) => {
     try {
         const token = thunkAPI.getState().auth.user.token;
-        return await todoService.deleteTodo(id, token);
+        return await listService.deleteList(id, token);
     } catch (error) {
         const message =  (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
         return thunkAPI.rejectWithValue(message);
     }
 });
 
-export const todoSlice = createSlice({
-    name: 'todos',
+export const listSlice = createSlice({
+    name: 'list',
     initialState,
     reducers: {
         // in this slice we can just reset the entire state back to initial,
@@ -70,54 +70,51 @@ export const todoSlice = createSlice({
     // the page, aka the point of using react.
     extraReducers: (builder) => {
         builder
-            .addCase(createTodo.fulfilled, (state, action) => {
+            .addCase(createList.fulfilled, (state, action) => {
                 state.isSuccess = true
-                state.todos.push(action.payload)
+                state.lists.push(action.payload)
             })
-            .addCase(createTodo.rejected, (state, action) => {
+            .addCase(createList.rejected, (state, action) => {
                 state.isError = true
                 state.message = action.payload
             })
-            .addCase(fetchTodos.fulfilled, (state, action) => {
+            .addCase(fetchLists.fulfilled, (state, action) => {
                 state.isSuccess = true
-                state.todos = action.payload
+                state.lists = action.payload
             })
-            .addCase(fetchTodos.rejected, (state, action) => {
+            .addCase(fetchLists.rejected, (state, action) => {
                 state.isError = true
                 state.message = action.payload
             })
-            .addCase(editTodo.fulfilled, (state, action) => {
+            .addCase(editList.fulfilled, (state, action) => {
                 state.isSuccess = true
                 // here we reflect the change so it's immediately in the UI
                 // without reloading:
-                state.todos = state.todos.map(
-                    (todo) => todo._id === action.payload._id ? {
-                        ...todo,
-                        title: action.payload.title,
-                        notes: action.payload.notes,
-                        dueDate: action.payload.dueDate,
-                        list: action.payload.list
-                    } : todo
+                state.lists = state.lists.map(
+                    (list) => list._id === action.payload._id ? {
+                        ...list,
+                        title: action.payload.title
+                    } : list
                 )
             })
-            .addCase(editTodo.rejected, (state, action) => {
+            .addCase(editList.rejected, (state, action) => {
                 state.isError = true
                 state.message = action.payload
             })
-            .addCase(deleteTodo.fulfilled, (state, action) => {
+            .addCase(deleteList.fulfilled, (state, action) => {
                 state.isSuccess = true
-                // here we filter out the todo we deleted so it's reflected
+                // here we filter out the list we deleted so it's reflected
                 // immediately in the UI:
-                state.todos = state.todos.filter(
-                    (todo) => todo._id !== action.payload.id
+                state.lists = state.lists.filter(
+                    (list) => list._id !== action.payload.id
                 )
             })
-            .addCase(deleteTodo.rejected, (state, action) => {
+            .addCase(deleteList.rejected, (state, action) => {
                 state.isError = true
                 state.message = action.payload
             })
     }
 });
 
-export const {reset} = todoSlice.actions;
-export default todoSlice.reducer;
+export const {reset} = listSlice.actions;
+export default listSlice.reducer;

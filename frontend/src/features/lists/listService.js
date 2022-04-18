@@ -2,10 +2,10 @@ import axios from 'axios';
 
 // this includes the proxy, otherwise you would need the full path
 // to the server-side:
-const API_URL = '/api/todos/';
+const API_URL = '/api/lists/';
 
 // handling the http request:
-const createTodo = async (todoData, token) => {
+const createList = async (listData, token) => {
 
     // setting the right header with the token in it to access
     // the protected route:
@@ -15,12 +15,12 @@ const createTodo = async (todoData, token) => {
         }
     };
 
-    const response = await axios.post(API_URL, todoData, config);
+    const response = await axios.post(API_URL, listData, config);
 
     return response.data;
 };
 
-const fetchTodos = async (token) => {
+const fetchLists = async (token) => {
 
     const config = {
         headers: {
@@ -33,16 +33,9 @@ const fetchTodos = async (token) => {
     return response.data;
 };
 
-const editTodo = async (todoData, token) => {
+const editList = async (listData, token) => {
 
-    let {title, notes, dueDate, list, id} = todoData;
-
-    // due to the type constraints in the todoModel, we set the default
-    // value in the schema to null, and then make sure we set it back
-    // to null in the request body if the edit form returns an empty string:
-    if (list === '') {
-        list = null;
-    }
+    const {title, id} = listData
 
     const config = {
         headers: {
@@ -52,15 +45,12 @@ const editTodo = async (todoData, token) => {
 
     const response = await axios.put(API_URL + id, {
         title,
-        notes,
-        dueDate,
-        list
     }, config);
 
     return response.data;
 };
 
-const deleteTodo = async (todoID, token) => {
+const deleteList = async (listID, token) => {
 
     const config = {
         headers: {
@@ -68,16 +58,16 @@ const deleteTodo = async (todoID, token) => {
         }
     };
 
-    const response = await axios.delete(API_URL + todoID, config);
+    const response = await axios.delete(API_URL + listID, config);
 
     return response.data;
 };
 
-const todoService = {
-    createTodo,
-    fetchTodos,
-    editTodo,
-    deleteTodo
+const listService = {
+    createList,
+    fetchLists,
+    editList,
+    deleteList
 };
 
-export default todoService;
+export default listService;

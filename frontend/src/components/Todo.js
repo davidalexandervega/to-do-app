@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { editTodo, deleteTodo } from '../features/todos/todoSlice';
 
 import './Todo.scss';
@@ -9,6 +9,8 @@ import './Todo.scss';
 const Todo = ({todo}) => {
 
     const dispatch = useDispatch();
+
+    const lists = useSelector((state) => state.lists.lists);
 
     const [editMode, setEditMode] = useState(false);
 
@@ -19,10 +21,11 @@ const Todo = ({todo}) => {
     const [formData, setFormData] = useState({
         title: todo.title,
         notes: todo.notes,
-        dueDate: todo.dueDate ? todo.dueDate.split('T')[0] : ''
+        dueDate: todo.dueDate ? todo.dueDate.split('T')[0] : '',
+        list: todo.list ? todo.list : ''
     });
 
-    const { title, notes, dueDate } = formData;
+    const { title, notes, dueDate, list } = formData;
 
     const onChange = (e) => {
         setFormData((prevState) => ({
@@ -38,7 +41,8 @@ const Todo = ({todo}) => {
             ...prevState,
             title: todo.title,
             notes: todo.notes,
-            dueDate: todo.dueDate ? todo.dueDate.split('T')[0] : ''
+            dueDate: todo.dueDate ? todo.dueDate.split('T')[0] : '',
+            list: todo.list
         }));
 
         setEditMode(false);
@@ -50,6 +54,7 @@ const Todo = ({todo}) => {
             title,
             notes,
             dueDate,
+            list,
             id: todo._id
         }
 
@@ -78,6 +83,15 @@ const Todo = ({todo}) => {
                 <label htmlFor='dueDate'><b>due date</b> </label>
                 <input type='date' className='formControl' id='dueDate'
                 name='dueDate' value={dueDate} onChange={onChange}/>
+
+                {lists.length > 0 ? (<>
+                <label htmlFor='list'><b>list</b> </label>
+                <select id='list' name='list' onChange={onChange} value={list}>
+                <option value={''}>-</option>
+                 {lists.map((list) => 
+                 (<option key={list._id} value={list._id}>{list.title}</option>))}
+                </select></>)
+                : <></> }
             </div>
 
             <div className='todoActions'>

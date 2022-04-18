@@ -1,11 +1,13 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 import NewTodo from '../components/NewTodo';
-import Todo from '../components/Todo'
-import { fetchTodos, reset } from '../features/todos/todoSlice';
+import Todo from '../components/Todo';
+
+import { fetchLists, reset as resetLists } from '../features/lists/listSlice';
+import { fetchTodos, reset as resetTodos } from '../features/todos/todoSlice';
 
 const Dashboard = () => {
     const navigate = useNavigate();
@@ -22,6 +24,12 @@ const Dashboard = () => {
         if (!user) {
             navigate('/login');
         } else {
+            // so the dashboard component here is listening for any firings
+            // of the listed functions, and is updating the state from the global
+            // store every time. this means any component that uses useSelector
+            // to access the global state benefits by being updated with
+            // the new state.
+            dispatch(fetchLists());
             dispatch(fetchTodos());
         }
 
@@ -32,7 +40,8 @@ const Dashboard = () => {
         // in order to perform an action when a component unmounts,
         // you use a return statement:
         return () => {
-            dispatch(reset())
+            dispatch(resetLists())
+            dispatch(resetTodos())
         }
     }, [user, navigate, isError, message, dispatch]);
 

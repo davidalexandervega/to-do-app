@@ -1,7 +1,7 @@
 html, body {
-    background-color: whitesmoke;
     margin: 0;
     padding: 0;
+    background-color: whitesmoke;
 }
 
 a {
@@ -45,7 +45,7 @@ a:hover, .logout:hover {
     display: flex;
     flex-direction: column;
     width: 10vw;
-    min-width: 100px;
+    min-width: 110px;
     border-right: 1px solid black;
 
     /* height is relative to the header height */
@@ -53,23 +53,21 @@ a:hover, .logout:hover {
 }
 
 .dashboard, .loginPage, .registerPage {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
-.dashboard {
     /* height is relative to the header height */
     min-height: 93vh;
     width: 90vw;
 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     /* via https://www.visiwig.com/patterns/ */
-    background-color: #000000;
+    background-color: #6c6458;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='100%25' height='100%25'%3E%3Cdefs%3E%3Cpattern id='p' width='50' height='100' patternUnits='userSpaceOnUse' patternTransform='scale(1.43)'%3E%3Cpath data-color='fill' fill='%23F5F5F5' d='M50 50c0 24.1-25 25-25 50C25 75 0 74.1 0 50S25 25 25 0c0 25 25 25.9 25 50z'%3E%3C/path%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23p)' width='100%25' height='100%25'%3E%3C/rect%3E%3C/svg%3E");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-     
 }
 
 .formControl {
