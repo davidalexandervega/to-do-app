@@ -70,6 +70,14 @@ a:hover, .logout:hover {
     background-repeat: no-repeat;
 }
 
+.loginPage, .registerPage {
+    width: 100vw;
+}
+
 .formControl {
     font-family: 'Times New Roman', Times, serif;
+}
+
+.todos {
+    margin-bottom: 25px;
 }

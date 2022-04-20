@@ -58,7 +58,7 @@ const Todo = ({todo}) => {
             id: todo._id
         }
 
-        dispatch(editTodo(todoData), setEditMode(false));
+        dispatch(editTodo(todoData), setEditMode(false))
     };
 
     const formatDate = (dueDate) => {

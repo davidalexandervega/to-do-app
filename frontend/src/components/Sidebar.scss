@@ -1,0 +1,22 @@
+.lists {
+    display: flex;
+    flex-direction: column;
+}
+
+.allList {
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.list {
+    font-weight: bold;
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+.list:hover, .allList:hover {
+    color: red;
+    cursor: pointer;
+}

@@ -41,7 +41,7 @@ const NewList = () => {
 
     return (
         <div className='newList'>
-            <b>new list</b>
+            <div className='newListHeader'>new list</div>
             <form className='listForm'>
                 <div className='formItem'>
                     <input type='text' className='formControl' id='title'
