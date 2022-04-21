@@ -95,14 +95,14 @@ const Todo = ({todo}) => {
             </div>
 
             <div className='todoActions'>
-                <span onClick={() => cancelEdit()} className='cancelEdit'>
+                <span onClick={() => cancelEdit()} className='cancel'>
                     <svg width="16" height="16" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M7 10.625H14.2C14.2 10.625 14.2 10.625 14.2 10.625C14.2 10.625 17 10.625 17 13.625C17 17 14.2 17 14.2 17H13.4" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
                     <path d="M10.5 14L7 10.625L10.5 7" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
                     <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                 </span>
-                <span onClick={() => confirmEdit()} className='confirmEdit'>
+                <span onClick={() => confirmEdit()} className='confirm'>
                     <svg width="16" height="16" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M7 12.5L10 15.5L17 8.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
                     <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
@@ -124,13 +124,13 @@ const Todo = ({todo}) => {
                 {todo.notes}
             </div>
             <div className='todoActions'>
-                <span onClick={() => toggleEdit()} className='editTodo'>
+                <span onClick={() => toggleEdit()} className='edit'>
                     <svg width="16" height="16" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M3 21L12 21H21" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
                     <path d="M12.2218 5.82839L15.0503 2.99996L20 7.94971L17.1716 10.7781M12.2218 5.82839L6.61522 11.435C6.42769 11.6225 6.32233 11.8769 6.32233 12.1421L6.32233 16.6776L10.8579 16.6776C11.1231 16.6776 11.3774 16.5723 11.565 16.3847L17.1716 10.7781M12.2218 5.82839L17.1716 10.7781" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                 </span>
-                <span onClick={() => dispatch(deleteTodo(todo._id))} className="deleteTodo">
+                <span onClick={() => dispatch(deleteTodo(todo._id))} className="delete">
                     <svg width="16" height="16" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M9.17218 14.8284L12.0006 12M14.829 9.17157L12.0006 12M12.0006 12L9.17218 9.17157M12.0006 12L14.829 14.8284" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
                     <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>

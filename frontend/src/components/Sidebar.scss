@@ -1,22 +1,75 @@
+.innerSidebar {
+    display: flex;
+    flex-direction: column;
+    margin-left: 5px;
+}
+
 .lists {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+}
+
+.editList {
+    visibility: hidden;
+    margin-left: 5px;
+}
+
+.lists:hover {
+    .editList {
+        visibility: visible;
+    }
 }
 
 .allList {
     margin-top: 5px;
-    margin-left: 5px;
     margin-bottom: 10px;
     font-weight: bold;
 }
 
 .list {
-    font-weight: bold;
-    margin-left: 5px;
+    display: flex;
+    align-items: center;
     margin-bottom: 5px;
+    font-weight: bold;
 }
 
-.list:hover, .allList:hover {
+.listHeader {
+    display: flex;
+    cursor: default;
+    font-weight: bold;
+}
+
+.listForm {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.listActions {
+    margin-top: 5px;
+}
+
+.newListContainer {
+    margin-top: 20px;
+}
+
+.editListContainer {
+    visibility: hidden;
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 25px;
+}
+
+.renameListHeader {
+    cursor: default;
+    font-size: 0.75em;
+}
+
+.deleteListHeader {
+    cursor: default;
+    font-size: 0.75em;
     color: red;
-    cursor: pointer;
 }

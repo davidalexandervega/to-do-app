@@ -4,12 +4,17 @@ html, body {
     background-color: whitesmoke;
 }
 
+@font-face {
+    font-family: 'mermaid';
+    src: url('./assets/fonts/mermaid/Mermaid1001.ttf');
+}
+
 a {
     color: black;
     text-decoration: none;
 }
 
-a:hover, .logout:hover {
+a:hover, .link:hover {
     cursor: pointer;
     color: red;
 }
@@ -76,6 +81,21 @@ a:hover, .logout:hover {
 
 .formControl {
     font-family: 'Times New Roman', Times, serif;
+}
+
+.new:hover, .edit:hover {
+    cursor: pointer;
+    color: goldenrod;
+}
+
+.confirm:hover {
+    cursor: pointer;
+    color: green;
+}
+
+.cancel:hover, .delete:hover {
+    cursor: pointer;
+    color: red;
 }
 
 .todos {

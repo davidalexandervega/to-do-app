@@ -38,18 +38,3 @@
     margin-left: 1px;
     margin-right: 1px;
 }
-
-.deleteTodo:hover, .cancelEdit:hover {
-    cursor: pointer;
-    color: red;
-}
-
-.editTodo:hover {
-    cursor: pointer;
-    color: goldenrod;
-}
-
-.confirmEdit:hover {
-    cursor: pointer;
-    color: green;
-}

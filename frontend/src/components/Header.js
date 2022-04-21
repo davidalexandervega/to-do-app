@@ -21,7 +21,7 @@ const Header = () => {
                 <Link to='/'><b>dashboard</b></Link>
             </div>
             <ul className='headerLinks'>
-                {user ? (<li><div className='logout' onClick={onLogout}><b>logout</b></div></li>) : 
+                {user ? (<li><div className='link' onClick={onLogout}><b>logout</b></div></li>) : 
                 (<>
                     <li>
                         <Link to='/login'><b>login</b></Link>
