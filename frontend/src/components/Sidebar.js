@@ -8,7 +8,7 @@ import './Sidebar.scss';
 
 const Sidebar = (props) => {
 
-    const {setView, todos} = props;
+    const {setView, setSort, sortItems, sort, sortView, todos} = props;
 
     const {lists} = useSelector((state) => state.lists);
 
@@ -30,9 +30,21 @@ const Sidebar = (props) => {
         let filtered = [];
         if (view === 'all') {
             setView(todos);
+            setSort(todos);
+            
+            sort(sortView, sortItems);
         } else {
             todos.map((todo) => `${todo.list}` === view ? filtered.push(todo) : '');
             setView(filtered);
+            setSort(filtered);
+
+            sort(sortView, sortItems);
+        }
+
+        // close the edit panel if the list being switched to view is not
+        // already the one being edited:
+        if (view !== `${toEdit._id}`) {
+            setToEdit('');
         }
     }
 
@@ -41,7 +53,7 @@ const Sidebar = (props) => {
     // for list editing, the list is passed to the sidebar's state,
     // in turn passed down to the EditList component, setting its view to
     // visible and arming it to dispatch from listSlice.js:
-    const onDelete = (list) => {
+    const onEdit = (list) => {
         setToEdit(list);
     }
 
@@ -54,7 +66,7 @@ const Sidebar = (props) => {
                         {lists.map((list) => 
                         (<div className='list' key={list._id}>
                             <span onClick={() => filter(`${list._id}`)} className='link'>{currentView.current === `${list._id}` ? `${list.title} •` : list.title}</span>
-                            <span onClick={() => onDelete(list)} className='edit editList'>
+                            <span onClick={() => onEdit(list)} className='edit editList'>
                                 <svg width="12" height="12" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M3 21L12 21H21" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
                                 <path d="M12.2218 5.82839L15.0503 2.99996L20 7.94971L17.1716 10.7781M12.2218 5.82839L6.61522 11.435C6.42769 11.6225 6.32233 11.8769 6.32233 12.1421L6.32233 16.6776L10.8579 16.6776C11.1231 16.6776 11.3774 16.5723 11.565 16.3847L17.1716 10.7781M12.2218 5.82839L17.1716 10.7781" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
