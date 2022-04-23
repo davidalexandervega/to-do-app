@@ -87,7 +87,7 @@ const Dashboard = () => {
 
     return (
         <div id='page'>
-            <Sidebar setView={setView} setSort={setSort} sortItems={sortItems} sort={sort} sortView={sortView} todos={todos}/>
+            <Sidebar setView={setView} setSort={setSort} sort={sort} sortView={sortView} todos={todos}/>
             <div className='dashboard'>
                 <NewTodo />
                 <div className="sortContainer">

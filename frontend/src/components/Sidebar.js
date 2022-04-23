@@ -8,7 +8,7 @@ import './Sidebar.scss';
 
 const Sidebar = (props) => {
 
-    const {setView, setSort, sortItems, sort, sortView, todos} = props;
+    const {setView, setSort, sort, sortView, todos} = props;
 
     const {lists} = useSelector((state) => state.lists);
 
@@ -32,13 +32,13 @@ const Sidebar = (props) => {
             setView(todos);
             setSort(todos);
             
-            sort(sortView, sortItems);
+            sort(sortView.current, todos);
         } else {
             todos.map((todo) => `${todo.list}` === view ? filtered.push(todo) : '');
             setView(filtered);
             setSort(filtered);
 
-            sort(sortView, sortItems);
+            sort(sortView.current, filtered);
         }
 
         // close the edit panel if the list being switched to view is not
