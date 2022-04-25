@@ -23,6 +23,14 @@ const createTodo = asyncHandler(async (req, res) => {
         throw new Error ('please add the required field(s)');
     }
 
+    // here i'm placing a limit of 250 total to-do items in the database,
+    // in order to keep the database at a nice demo size:
+    const maxedOut = await Todo.count();
+    if (maxedOut >= 250) {
+        res.status(400);
+        throw new Error('to-dos are at capacity');
+    }
+
     const todo = await Todo.create({
         title: req.body.title,
         notes: req.body.notes ? req.body.notes : '',

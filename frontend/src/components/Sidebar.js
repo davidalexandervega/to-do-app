@@ -8,7 +8,7 @@ import './Sidebar.scss';
 
 const Sidebar = (props) => {
 
-    const {setView, setSort, sort, sortView, todos} = props;
+    const {setView, sort, sortView, todos} = props;
 
     const {lists} = useSelector((state) => state.lists);
 
@@ -26,18 +26,16 @@ const Sidebar = (props) => {
 
     const filter = (view) => {
         currentView.current = view;
-
         let filtered = [];
+
+        // to provision the filtered list of to-do items via setView,
+        // then sort them using whatever the previous sort setting is:
         if (view === 'all') {
-            setView(todos);
-            setSort(todos);
-            
+            setView(todos);  
             sort(sortView.current, todos);
         } else {
             todos.map((todo) => `${todo.list}` === view ? filtered.push(todo) : '');
             setView(filtered);
-            setSort(filtered);
-
             sort(sortView.current, filtered);
         }
 

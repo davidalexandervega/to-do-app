@@ -8,8 +8,8 @@ import {login, reset} from '../features/auth/authSlice';
 const Login = () => {
 
     const [formData, setFormData] = useState({
-        email: '',
-        password: ''
+        email: 'demo@gmail.com',
+        password: 'demo'
     });
 
     const { email, password, } = formData;
@@ -42,9 +42,7 @@ const Login = () => {
         }))
     }
 
-    const onSubmit = (e) => {
-        e.preventDefault();
-
+    const onSubmit = () => {
         const userData = {
             email,
             password
@@ -55,23 +53,35 @@ const Login = () => {
 
     return (
         <div className='loginPage'>
-            <section className='heading'>
-                <div>login</div>
-            </section>
+            <div className='loginContainer'>
+                    <div className='formHeader'>login</div>
 
-            <section className='form'>
-                <form onSubmit={onSubmit}>
-                    <label htmlFor='email'>email </label>
-                    <input type='text' className='formControl' id='email' 
-                    name='email' value={email} onChange={onChange}/>
+                    <form className='authForm'>
+                        <div className="formItem">
+                            <label htmlFor='email'>email </label>
+                            <input type='text' className='formControl' id='email' 
+                            name='email' value={email} onChange={onChange} size='25'/>
+                        </div>
 
-                    <label htmlFor='password'>password </label>
-                    <input type='password' className='formControl' id='password' 
-                    name='password' value={password} onChange={onChange}/>
+                        <div className="formItem">
+                            <label htmlFor='password'>password </label>
+                            <input type='password' className='formControl' id='password' 
+                            name='password' value={password} onChange={onChange} size='21'/>
+                        </div>
+                    </form>
+                    <span onClick={() => onSubmit()} className='confirm'>
+                        <svg width="16" height="16" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 12.5L10 15.5L17 8.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                    </span>
 
-                    <button type='submit' className='submitForm'>submit</button>
-                </form>
-            </section>
+                    <div className='infinity'>
+                        hey, thanks for checking out the app!<br></br>
+                        try the demo out to see what the app looks like in action.<br></br>
+                        feel free to register an account in order to save changes upon logout.
+                    </div>
+            </div>
         </div>
     )
 }

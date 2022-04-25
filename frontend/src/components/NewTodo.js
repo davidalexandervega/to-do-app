@@ -3,8 +3,6 @@ import {useDispatch, useSelector} from 'react-redux';
 
 import {createTodo} from '../features/todos/todoSlice'
 
-import './NewTodo.scss'
-
 const NewTodo = () => {
     
     const [formData, setFormData] = useState({
@@ -51,29 +49,29 @@ const NewTodo = () => {
 
     return (
         <div className='newTodo'>
-            <div className='newTodoHeader'><b>add a new to-do</b></div>
+            <div className='formHeader'>add a new to-do</div>
             <form className='todoForm'>
                 <div className='formItem'>
-                <label htmlFor='title'><b>title </b></label>
+                <label htmlFor='title'>title </label>
                 <input type='text' className='formControl' id='title'
                 name='title' value={title} onChange={onChange}/>
                 </div>
 
                 <div className='formItem'>
-                <label htmlFor='notes'><b>notes </b></label>
+                <label htmlFor='notes'>notes </label>
                 <input type='text' className='formControl' id='notes'
                 name='notes' value={notes} onChange={onChange}/>
                 </div>
 
                 <div className='formItem'>
-                <label htmlFor='dueDate'><b>due date </b></label>
+                <label htmlFor='dueDate'>due date </label>
                 <input type='date' className='formControl' id='dueDate'
                 name='dueDate' value={dueDate} onChange={onChange}/>
                 </div>
 
                 <div className='formItem'>
                     {lists.length > 0 ? (<>
-                    <label htmlFor='list'><b>list</b> </label>
+                    <label htmlFor='list'>list </label>
                     <select id='list' name='list' onChange={onChange} value={list}>
                     <option value={''}>-</option>
                     {lists.map((list) => 
@@ -82,7 +80,7 @@ const NewTodo = () => {
                     : <></> }
                 </div>
 
-                <span onClick={() => onSubmit()} className='submitTodo'>
+                <span onClick={() => onSubmit()} className='new confirmNewTodo'>
                     <svg width="16" height="16" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M8 12H12M16 12H12M12 12V8M12 12V16" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
                     <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>

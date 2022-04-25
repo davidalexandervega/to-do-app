@@ -46,9 +46,7 @@ const Register = () => {
         }))
     }
 
-    const onSubmit = (e) => {
-        e.preventDefault();
-
+    const onSubmit = () => {
         if (password !== confPassword) {
             console.log('passwords do not match');
         } else {
@@ -63,31 +61,41 @@ const Register = () => {
 
     return (
         <div className='registerPage'>
-            <section className='heading'>
-                <div>registration</div>
-            </section>
+            <div className='registerContainer'>
+                    <div className='formHeader'>registration</div>
 
-            <section className='form'>
-                <form onSubmit={onSubmit}>
-                    <label htmlFor='username'>username </label>
-                    <input type='text' className='formControl' id='username' 
-                    name='username' value={username} onChange={onChange}/>
+                    <form className='authForm'>
+                        <div className="formItem">
+                            <label htmlFor='username'>username </label>
+                            <input type='text' className='formControl' id='username' 
+                            name='username' value={username} onChange={onChange} size='25'/>
+                        </div>
 
-                    <label htmlFor='email'>email </label>
-                    <input type='text' className='formControl' id='email' 
-                    name='email' value={email} onChange={onChange}/>
+                        <div className="formItem">
+                            <label htmlFor='email'>email </label>
+                            <input type='text' className='formControl' id='email' 
+                            name='email' value={email} onChange={onChange} size='29'/>
+                        </div>
 
-                    <label htmlFor='password'>password </label>
-                    <input type='password' className='formControl' id='password' 
-                    name='password' value={password} onChange={onChange}/>
+                        <div className="formItem">
+                            <label htmlFor='password'>password </label>
+                            <input type='password' className='formControl' id='password' 
+                            name='password' value={password} onChange={onChange} size='25'/>
+                        </div>
 
-                    <label htmlFor='confPassword'>confirm password </label>
-                    <input type='password' className='formControl' id='confPassword' 
-                    name='confPassword' value={confPassword} onChange={onChange}/>
-
-                    <button type='submit' className='submitForm'>submit</button>
-                </form>
-            </section>
+                        <div className="formItem">
+                            <label htmlFor='confPassword'>confirm password </label>
+                            <input type='password' className='formControl' id='confPassword' 
+                            name='confPassword' value={confPassword} onChange={onChange} size='16'/>
+                        </div>
+                    </form>
+                    <span onClick={() => onSubmit()} className='confirm'>
+                        <svg width="16" height="16" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 12.5L10 15.5L17 8.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                    </span>
+            </div>
         </div>
     )
 }

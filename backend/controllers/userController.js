@@ -23,6 +23,14 @@ const registerUser = asyncHandler(async (req, res) => {
         throw new Error('user already exists');
     };
 
+    // here i'm placing a limit of 13 total users in the database,
+    // in order to keep the database at a nice demo size:
+    const maxedOut = await User.count();
+    if (maxedOut >= 13) {
+        res.status(400);
+        throw new Error('user list is at capacity');
+    }
+
     // hash the password:
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);

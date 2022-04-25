@@ -56,7 +56,6 @@ const Dashboard = () => {
             byDate.sort((a,b) => (b.dueDate ? new Date(b.dueDate) : new Date('2222-12-31')) - (a.dueDate ? new Date(a.dueDate) : new Date('2222-12-31')));
             setSort(byDate);
         }
-        console.log(sortView);
     }
 
     useEffect(() => {
@@ -87,7 +86,7 @@ const Dashboard = () => {
 
     return (
         <div id='page'>
-            <Sidebar setView={setView} setSort={setSort} sort={sort} sortView={sortView} todos={todos}/>
+            <Sidebar setView={setView} sort={sort} sortView={sortView} todos={todos}/>
             <div className='dashboard'>
                 <NewTodo />
                 <div className="sortContainer">
@@ -96,22 +95,22 @@ const Dashboard = () => {
                     {sortView.current.includes('created') ? 
                      <>
                      {sortView.current === 'created-increasing' ?
-                     <div onClick={() => sort('created-decreasing', viewItems)}><b>created (old - new)</b></div>
+                     <div className='sortLink' onClick={() => sort('created-decreasing', viewItems)}><b>created (old - new)</b></div>
                     :
-                    <div onClick={() => sort('created-increasing', viewItems)}><b>created (new - old)</b></div>}
+                    <div className='sortLink' onClick={() => sort('created-increasing', viewItems)}><b>created (new - old)</b></div>}
                      </>
                     : 
-                    <div onClick={() => sort('created-increasing', viewItems)}>created (old - new)</div>}
+                    <div className='sortLink' onClick={() => sort('created-increasing', viewItems)}>created (old - new)</div>}
 
                     {sortView.current.includes('dueDate') ? 
                      <>
                      {sortView.current === 'dueDate-increasing' ?
-                     <div onClick={() => sort('dueDate-decreasing', viewItems)}><b>due date (increasing)</b></div>
+                     <div className='sortLink' onClick={() => sort('dueDate-decreasing', viewItems)}><b>due date (increasing)</b></div>
                     :
-                    <div onClick={() => sort('dueDate-increasing', viewItems)}><b>due date (decreasing)</b></div>}
+                    <div className='sortLink' onClick={() => sort('dueDate-increasing', viewItems)}><b>due date (decreasing)</b></div>}
                      </>
                     : 
-                    <div onClick={() => sort('dueDate-increasing', viewItems)}>due date (increasing)</div>}
+                    <div className='sortLink' onClick={() => sort('dueDate-increasing', viewItems)}>due date (increasing)</div>}
 
                 </div>
                 {sortItems.length > 0 ? (
