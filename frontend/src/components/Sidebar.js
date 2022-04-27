@@ -12,7 +12,7 @@ const Sidebar = (props) => {
 
     const {lists} = useSelector((state) => state.lists);
 
-    // this reference records the view last selected, starting with 'all'
+    // record the view last selected, starting with 'all':
     const currentView = useRef('all');
 
     // when the to-dos are loaded in at first this hook renders them in
@@ -48,9 +48,8 @@ const Sidebar = (props) => {
 
 
     const [toEdit, setToEdit] = useState('');
-    // for list editing, the list is passed to the sidebar's state,
-    // in turn passed down to the EditList component, setting its view to
-    // visible and arming it to dispatch from listSlice.js:
+    // the list is passed to the sidebar state, in turn passed down to the EditList component, 
+    // setting its view to visible and arming it to dispatch from listSlice.js:
     const onEdit = (list) => {
         setToEdit(list);
     }

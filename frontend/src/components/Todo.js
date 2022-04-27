@@ -14,6 +14,8 @@ const Todo = ({todo}) => {
 
     const [editMode, setEditMode] = useState(false);
 
+    // this way the component itself is maintained but renders different
+    // jsx based on the selected mode:
     const toggleEdit = () => {
         setEditMode(true)
     };
@@ -31,7 +33,7 @@ const Todo = ({todo}) => {
         setFormData((prevState) => ({
             ...prevState,
             // this refers to the form control as e.target,
-            // as each has a 'name' and 'value' property:
+            // as each has a 'name' and 'value' attribute:
             [e.target.name]: e.target.value
         }))
     };
@@ -61,6 +63,8 @@ const Todo = ({todo}) => {
         dispatch(editTodo(todoData), setEditMode(false))
     };
 
+    // format the date from the string of a Date object 
+    // to MM-DD-YYYY for display:
     const formatDate = (dueDate) => {
         let date = dueDate.split('T')[0];
         let dateParts = date.split('-');
@@ -93,7 +97,6 @@ const Todo = ({todo}) => {
                 </select></>)
                 : <></> }
             </div>
-
             <div className='todoActions'>
                 <span onClick={() => cancelEdit()} className='cancel'>
                     <svg width="16" height="16" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -110,14 +113,21 @@ const Todo = ({todo}) => {
                 </span>
             </div>
         </div>
+
          :
+
         <div className='todo'>
             <div className='todoHeader'>
                 <div className='todoTitle'>
                     <b>{todo.title}</b>
                 </div>
+                
                 <div className='todoDate'>
-                    due <i>{todo.dueDate ? formatDate(todo.dueDate) : 'whenever'}</i>
+                    due <i>{todo.dueDate ? <>
+                        {new Date(todo.dueDate) < new Date() ? 
+                        <span className='late'>{formatDate(todo.dueDate)}</span> 
+                        : formatDate(todo.dueDate)}
+                    </> : 'whenever'}</i>
                 </div>
             </div>
             <div className='todoNotes'>

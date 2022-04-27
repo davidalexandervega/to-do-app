@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+
+// import the handling functions from the controller:
 const { registerUser, loginUser, getMe } = require('../controllers/userController');
 
 // import the auth middleware to protect private routes:

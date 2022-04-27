@@ -1,10 +1,9 @@
 import axios from 'axios';
 
-// this includes the proxy, otherwise you would need the full path
-// to the server-side:
+// this includes the proxy definied in package.json
+// otherwise you would need the full path to the server-side:
 const API_URL = '/api/users/';
 
-// handling the http request:
 const register = async (userData) => {
     const response = await axios.post(API_URL, userData);
 

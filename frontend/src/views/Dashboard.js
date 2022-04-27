@@ -7,15 +7,13 @@ import Sidebar from "../components/Sidebar";
 import NewTodo from '../components/NewTodo';
 import Todo from '../components/Todo';
 
-import { fetchLists, reset as resetLists } from '../features/lists/listSlice';
-import { fetchTodos, reset as resetTodos } from '../features/todos/todoSlice';
+import { fetchLists, reset as resetLists} from '../features/lists/listSlice';
+import { fetchTodos, reset as resetTodos} from '../features/todos/todoSlice';
 
 const Dashboard = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    // may be notable later that this is a destructuring of state.auth.user,
-    // and is equivalent to user = useSelector((state) => state.auth.user).
     const {user} = useSelector((state) => state.auth);
 
     const {todos, isError, message} = useSelector((state) => state.todos);
@@ -39,11 +37,12 @@ const Dashboard = () => {
             let reverse = [...viewItems];
             setSort(reverse.reverse());
         }
+
         // if there's no due date set for a to-do item, the sorting method places it at
         // the front of the list if viewing by increasing due date. this isn't really desirable,
         // since 'due whenever' should really mean it goes at the end of the list.
-        // for this reason, we arbitrarily set 2222-12-31 as the due date for any to-dos with
-        // no due date for the purposes of the sorting:
+        // for this reason, dueDate is arbitrarily set 2222-12-31 for any to-dos with
+        // no due date for the purposes of sorting:
         if (setting === 'dueDate-increasing') {
             sortView.current = 'dueDate-increasing'
             let byDate = [...viewItems];
@@ -63,11 +62,6 @@ const Dashboard = () => {
         if (!user) {
             navigate('/login');
         } else {
-            // so the dashboard component here is listening for any firings
-            // of the listed functions, and is updating the state from the global
-            // store every time. this means any component that uses useSelector
-            // to access the global state benefits by being updated with
-            // the new state.
             dispatch(fetchLists());
             dispatch(fetchTodos());
         }
@@ -76,8 +70,7 @@ const Dashboard = () => {
             console.log(message)
         }
 
-        // in order to perform an action when a component unmounts,
-        // you use a return statement:
+        // reset the global state upon unmount:
         return () => {
             dispatch(resetLists());
             dispatch(resetTodos());

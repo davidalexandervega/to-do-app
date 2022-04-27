@@ -23,8 +23,8 @@ const registerUser = asyncHandler(async (req, res) => {
         throw new Error('user already exists');
     };
 
-    // here i'm placing a limit of 13 total users in the database,
-    // in order to keep the database at a nice demo size:
+    // place a limit of 13 total users in the database
+    // to keep the app at a good demo size:
     const maxedOut = await User.count();
     if (maxedOut >= 13) {
         res.status(400);
@@ -68,9 +68,6 @@ const loginUser = asyncHandler(async (req, res) => {
     // use bcrypt method to compare request password to stored password:
     if (user && (await bcrypt.compare(password, user.password))) {
         res.json({
-            // important to note here that '.id' is a mongoose virtual
-            // string representation of the '._id' field in mongoDB, and
-            // that's how the two differ:
             _id: user.id,
             name: user.username,
             email: user.email,
@@ -86,12 +83,11 @@ const loginUser = asyncHandler(async (req, res) => {
 // route: GET /api/users/me
 // access: private
 const getMe = asyncHandler(async (req, res) => {
-    // req.user should be accessible since this request has passed through
-    // the authorization middleware:
+    // req.user is accessible since this request passes through
+    // authMiddleware.js as defined in userRoutes.js:
     res.status(200).json(req.user);
 });
 
-// function to generate & sign jwt token:
 const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '30d' });
 };

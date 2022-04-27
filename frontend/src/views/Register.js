@@ -19,12 +19,10 @@ const Register = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    // retrieving from the global state:
     const {user, isError, isSuccess, message} = useSelector((state) => state.auth);
 
-    // setting up the useEffect to watch for when any of the variables in
-    // the array change, and actions to perform based on those changes:
     useEffect(() => {
+        
         if (isError) {
             console.log(message);
         }
@@ -41,7 +39,7 @@ const Register = () => {
         setFormData((prevState) => ({
             ...prevState,
             // this refers to the form control as e.target,
-            // as each has a 'name' and 'value' property:
+            // as each has a 'name' and 'value' attribute:
             [e.target.name]: e.target.value
         }))
     }

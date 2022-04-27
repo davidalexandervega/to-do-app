@@ -22,7 +22,7 @@ const NewTodo = () => {
         setFormData((prevState) => ({
             ...prevState,
             // this refers to the form control as e.target,
-            // as each has a 'name' and 'value' property:
+            // as each has a 'name' and 'value' attribute:
             [e.target.name]: e.target.value
         }))
     };
@@ -54,7 +54,7 @@ const NewTodo = () => {
                 <div className='formItem'>
                 <label htmlFor='title'>title </label>
                 <input type='text' className='formControl' id='title'
-                name='title' value={title} onChange={onChange}/>
+                name='title' value={title} onChange={onChange} maxLength={30}/>
                 </div>
 
                 <div className='formItem'>

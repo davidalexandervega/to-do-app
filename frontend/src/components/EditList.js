@@ -24,7 +24,7 @@ const DeleteList = (props) => {
         setFormData((prevState) => ({
             ...prevState,
             // this refers to the form control as e.target,
-            // as each has a 'name' and 'value' property:
+            // as each has a 'name' and 'value' attribute:
             [e.target.name]: e.target.value
         }))
     };
@@ -57,9 +57,9 @@ const DeleteList = (props) => {
     }
 
     const confirmDelete = () => {
-        // if the deletion form is validated, first we delete all to-do items
-        // that refer to the list, then the list itself. then we close the edit
-        // form and set the list view back to 'all':
+        // if the deletion form is validated, first all to-do items 
+        // that refer to the list are deleted, following by the list itself.
+        // then the edit form is closed and the list view is set back to 'all':
         if (deleteTitle === list.title) {
             todos.map((todo) => {
                 if (todo.list === list._id) {

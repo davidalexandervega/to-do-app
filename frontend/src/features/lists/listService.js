@@ -1,14 +1,12 @@
 import axios from 'axios';
 
-// this includes the proxy, otherwise you would need the full path
-// to the server-side:
+// this includes the proxy definied in package.json
+// otherwise you would need the full path to the server-side:
 const API_URL = '/api/lists/';
 
-// handling the http request:
 const createList = async (listData, token) => {
 
-    // setting the right header with the token in it to access
-    // the protected route:
+    // set the correct header with the token to access the protected route:
     const config = {
         headers: {
             Authorization: `Bearer ${token}`

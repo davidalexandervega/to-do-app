@@ -17,10 +17,10 @@ const Login = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    // retrieving from the global state:
     const {user, isError, isSuccess, message} = useSelector((state) => state.auth);
 
     useEffect(() => {
+        
         if (isError) {
             console.log(message);
         }
@@ -37,7 +37,7 @@ const Login = () => {
         setFormData((prevState) => ({
             ...prevState,
             // this refers to the form control as e.target,
-            // as each has a 'name' and 'value' property:
+            // as each has a 'name' and 'value' attribute:
             [e.target.name]: e.target.value
         }))
     }
@@ -78,8 +78,7 @@ const Login = () => {
 
                     <div className='infinity'>
                         hey, thanks for checking out the app!<br></br>
-                        try the demo out to see what the app looks like in action.<br></br>
-                        feel free to register an account in order to save changes upon logout.
+                        try the demo account, or feel free to register your own.
                     </div>
             </div>
         </div>

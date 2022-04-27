@@ -7,9 +7,8 @@ const User = require('../models/userModel');
 // route: GET /api/todos
 // access: private
 const getTodos = asyncHandler(async (req, res) => {
-    // user is a key for each to-do item, and we have req.user.id
-    // via the authorization middleware, so we can find any user's
-    // to-dos like this:
+    // authMiddleware.js sets the user object to req.user
+    // user is a key to each to-do item, user._id being the value:
     const todos = await Todo.find({ user: req.user.id });
     res.status(200).json(todos);
 });
@@ -23,8 +22,8 @@ const createTodo = asyncHandler(async (req, res) => {
         throw new Error ('please add the required field(s)');
     }
 
-    // here i'm placing a limit of 250 total to-do items in the database,
-    // in order to keep the database at a nice demo size:
+    // place a limit of 250 to-do items total in the database
+    // to keep it at a demo size:
     const maxedOut = await Todo.count();
     if (maxedOut >= 250) {
         res.status(400);
@@ -36,7 +35,7 @@ const createTodo = asyncHandler(async (req, res) => {
         notes: req.body.notes ? req.body.notes : '',
         dueDate: req.body.dueDate ? req.body.dueDate : null,
         list: req.body.list ? req.body.list : null,
-        // again, req.user.id exists on the login token:
+        // req.user.id is taken from the login token:
         user: req.user.id
     })
     res.status(200).json(todo);
@@ -53,13 +52,13 @@ const updateTodo = asyncHandler(async (req, res) => {
         throw new Error ('to-do not found');
     }
     
-    // note that we already have req.user via the authorization middlware:
+    // authMiddleware.js sets the user object to req.user
     if (!req.user) {
         res.status(401);
         throw new Error('user not found');
     }
 
-    // verifies that the logged in user matches the to-do's user:
+    // verify that the logged in user matches the to-do's user:
     if (todo.user.toString() !== req.user.id) {
         res.status(401);
         throw new Error('user not authorized');
@@ -81,13 +80,13 @@ const deleteTodo = asyncHandler(async (req, res) => {
         throw new Error ('to-do not found');
     }
 
-    // note that we already have req.user via the authorization middlware:
+    // authMiddleware.js sets the user object to req.user
     if (!req.user) {
         res.status(401);
         throw new Error('user not found');
     }
 
-    // verifies that the logged in user matches the to-do's user:
+    // verify that the logged in user matches the to-do's user:
     if (todo.user.toString() !== req.user.id) {
         res.status(401);
         throw new Error('user not authorized');

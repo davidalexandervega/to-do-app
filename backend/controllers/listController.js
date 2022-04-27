@@ -7,9 +7,8 @@ const User = require('../models/userModel');
 // route: GET /api/lists
 // access: private
 const getLists = asyncHandler(async (req, res) => {
-    // user is a key for each list, and we have req.user.id
-    // via the authorization middleware, so we can find any user's
-    // lists like this:
+    // authMiddleware.js sets the user object to req.user
+    // user is a key to each list, user._id being the value:
     const lists = await List.find({ user: req.user.id });
     res.status(200).json(lists);
 });
@@ -25,7 +24,7 @@ const createList = asyncHandler(async (req, res) => {
 
     const list = await List.create({
         title: req.body.title,
-        // again, req.user.id exists on the login token:
+        // req.user.id is taken from the login token:
         user: req.user.id
     })
     res.status(200).json(list);
@@ -42,13 +41,13 @@ const updateList = asyncHandler(async (req, res) => {
         throw new Error ('list not found');
     }
     
-    // note that we already have req.user via the authorization middlware:
+    // authMiddleware.js sets the user object to req.user
     if (!req.user) {
         res.status(401);
         throw new Error('user not found');
     }
 
-    // verifies that the logged in user matches the list's user:
+    // verify that the logged in user matches the list's user:
     if (list.user.toString() !== req.user.id) {
         res.status(401);
         throw new Error('user not authorized');
@@ -70,13 +69,13 @@ const deleteList = asyncHandler(async (req, res) => {
         throw new Error ('list not found');
     }
 
-    // note that we already have req.user via the authorization middlware:
+    // authMiddleware.js sets the user object to req.user
     if (!req.user) {
         res.status(401);
         throw new Error('user not found');
     }
 
-    // verifies that the logged in user matches the list's user:
+    // verify that the logged in user matches the list's user:
     if (list.user.toString() !== req.user.id) {
         res.status(401);
         throw new Error('user not authorized');

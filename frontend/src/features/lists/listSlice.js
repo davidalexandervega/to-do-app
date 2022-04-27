@@ -10,21 +10,16 @@ const initialState = {
 
 export const createList = createAsyncThunk('lists/create', async (listData, thunkAPI) => {
     try {
-        // the thunkAPI object also contains a getState() method that we can
-        // use to retrieve any state from the global store. we need the token
-        // since the create list route is protected:
         const token = thunkAPI.getState().auth.user.token;
         return await listService.createList(listData, token);
     } catch (error) {
-        // checking if any errors, and using the message as the payload
-        // if there is one:
+        // check if any errors, and using the message as the payload if so:
         const message =  (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
         return thunkAPI.rejectWithValue(message);
     }
 });
 
-// note that in order to pass in just the thunkAPI, we need to pass an underscore
-// in first as an empty argument:
+// in order to pass in only thunkAPI, _ must be set as the first argument:
 export const fetchLists = createAsyncThunk('/lists/fetchAll', async (_, thunkAPI) => {
     try {
         const token = thunkAPI.getState().auth.user.token;
@@ -59,15 +54,10 @@ export const listSlice = createSlice({
     name: 'list',
     initialState,
     reducers: {
-        // in this slice we can just reset the entire state back to initial,
-        // whereas in authSlice.js we need to persist the user if they're logged in.
+        // in this slice the entire state may be reset to the original,
+        // whereas in authSlice.js the user must be persisted if authenticated:
         reset: (state) => initialState
     },
-    // as described in authSlice.js, the extra reducers hook up our global state
-    // to watch for the results of the functions in our slice. we then pass the
-    // state to our components, which respond with handler logic as usual.
-    // this way changes are shown *as they happen* without needing to reload
-    // the page, aka the point of using react.
     extraReducers: (builder) => {
         builder
             .addCase(createList.fulfilled, (state, action) => {
@@ -88,8 +78,8 @@ export const listSlice = createSlice({
             })
             .addCase(editList.fulfilled, (state, action) => {
                 state.isSuccess = true
-                // here we reflect the change so it's immediately in the UI
-                // without reloading:
+                // to reflect the edited change so it immediately appears
+                // in the UI without reloading:
                 state.lists = state.lists.map(
                     (list) => list._id === action.payload._id ? {
                         ...list,
@@ -103,8 +93,8 @@ export const listSlice = createSlice({
             })
             .addCase(deleteList.fulfilled, (state, action) => {
                 state.isSuccess = true
-                // here we filter out the list we deleted so it's reflected
-                // immediately in the UI:
+                // the deleted to-do item is filtered out so the UI
+                // is immediately updated without reloading:
                 state.lists = state.lists.filter(
                     (list) => list._id !== action.payload.id
                 )

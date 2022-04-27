@@ -4,9 +4,8 @@ html, body {
     background-color: whitesmoke;
 }
 
-@font-face {
-    font-family: 'mermaid';
-    src: url('./assets/fonts/mermaid/Mermaid1001.ttf');
+select {
+    font-family: 'Times New Roman', Times, serif;
 }
 
 a {
@@ -49,7 +48,6 @@ a:hover, .link:hover {
 
 .sortLink:hover {
     cursor: pointer;
-    font-weight: bold;
 }
 
 #page {
@@ -60,7 +58,7 @@ a:hover, .link:hover {
     display: flex;
     flex-direction: column;
     width: 10vw;
-    min-width: 110px;
+    min-width: 120px;
     border-right: 1px solid black;
 
     /* height is relative to the header height */

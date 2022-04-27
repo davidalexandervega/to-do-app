@@ -18,7 +18,7 @@ const NewList = () => {
         setFormData((prevState) => ({
             ...prevState,
             // this refers to the form control as e.target,
-            // as each has a 'name' and 'value' property:
+            // as each has a 'name' and 'value' attribute:
             [e.target.name]: e.target.value
         }))
     };
@@ -42,7 +42,7 @@ const NewList = () => {
             <div className='listHeader'>new list</div>
             <form className='listForm'>
                 <input type='text' className='formControl' id='title'
-                name='title' value={title} onChange={onChange} size='10'/>
+                name='title' value={title} onChange={onChange} size='10' maxLength={10}/>
 
                 <span onClick={() => onSubmit()} className='new listActions'>
                     <svg width="16" height="16" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

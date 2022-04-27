@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+
+// import the handling functions from the controller:
 const { getLists, createList, updateList, deleteList } = require('../controllers/listController');
 
 // import the auth middleware to protect private routes:

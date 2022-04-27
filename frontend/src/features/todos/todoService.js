@@ -1,14 +1,12 @@
 import axios from 'axios';
 
-// this includes the proxy, otherwise you would need the full path
-// to the server-side:
+// this includes the proxy definied in package.json
+// otherwise you would need the full path to the server-side:
 const API_URL = '/api/todos/';
 
-// handling the http request:
 const createTodo = async (todoData, token) => {
 
-    // setting the right header with the token in it to access
-    // the protected route:
+    // set the correct header with the token to access the protected route:
     const config = {
         headers: {
             Authorization: `Bearer ${token}`
@@ -37,9 +35,8 @@ const editTodo = async (todoData, token) => {
 
     let {title, notes, dueDate, list, id} = todoData;
 
-    // due to the type constraints in the todoModel, we set the default
-    // value in the schema to null, and then make sure we set it back
-    // to null in the request body if the edit form returns an empty string:
+    // due to the type constraints in todoModel.js, set the
+    // req.body.list to null if it contains an empty string:
     if (list === '') {
         list = null;
     }
