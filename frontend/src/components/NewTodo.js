@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { createTodo } from '../features/todos/todoSlice';
@@ -34,16 +34,23 @@ const NewTodo = () => {
       list,
     };
 
-    dispatch(createTodo(todoData));
+    if (title !== '') {
+      errorRef.current.innerHTML = '';
+      dispatch(createTodo(todoData));
 
-    setFormData((prevState) => ({
-      ...prevState,
-      title: '',
-      notes: '',
-      dueDate: '',
-      list: '',
-    }));
+      setFormData((prevState) => ({
+        ...prevState,
+        title: '',
+        notes: '',
+        dueDate: '',
+        list: '',
+      }));
+    } else {
+      errorRef.current.innerHTML = 'to-dos require at least a title';
+    }
   };
+
+  const errorRef = useRef();
 
   return (
     <div className="newTodo">
@@ -128,6 +135,7 @@ const NewTodo = () => {
           </svg>
         </span>
       </form>
+      <div className="error" ref={errorRef}></div>
     </div>
   );
 };

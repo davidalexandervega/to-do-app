@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { editTodo, deleteTodo } from '../features/todos/todoSlice';
 
@@ -38,6 +38,7 @@ const Todo = ({ todo }) => {
   };
 
   const cancelEdit = () => {
+    errorRef.current.innerHTML = '';
     setFormData((prevState) => ({
       ...prevState,
       title: todo.title,
@@ -58,8 +59,15 @@ const Todo = ({ todo }) => {
       id: todo._id,
     };
 
-    dispatch(editTodo(todoData), setEditMode(false));
+    if (title !== '') {
+      errorRef.current.innerHTML = '';
+      dispatch(editTodo(todoData), setEditMode(false));
+    } else {
+      errorRef.current.innerHTML = 'to-dos require at least a title';
+    }
   };
+
+  const errorRef = useRef();
 
   // format the date from the string of a Date object
   // to MM-DD-YYYY for display:
@@ -183,6 +191,7 @@ const Todo = ({ todo }) => {
               </svg>
             </span>
           </div>
+          <div className="error" ref={errorRef}></div>
         </div>
       ) : (
         <div className="todo">

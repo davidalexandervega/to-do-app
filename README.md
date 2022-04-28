@@ -18,4 +18,9 @@ there to start react on port 3000 & express on process.env.PORT.
 it also connects to the mongoDB database through mongoose
 via process.env.MONGO_URI.
 
+to instead run in production mode, run npm run build in the frontend,
+set NODE_ENV to production, and run npm run start in the root.
+
+you may then access the app at localhost:process.env.PORT.
+
 #################################################################################
