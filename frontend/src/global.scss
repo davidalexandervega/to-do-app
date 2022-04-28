@@ -175,8 +175,18 @@ a:hover,
 .error {
   font-style: italic;
   font-size: 0.75em;
+  cursor: default;
   color: red;
   align-self: center;
+  margin-bottom: 5px;
+}
+
+.noTodos {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 0.9em;
+  font-style: italic;
+  text-align: center;
 }
 
 .infinity {
