@@ -55,15 +55,29 @@ const Sidebar = (props) => {
   return (
     <div className="sidebar">
       <div className="innerSidebar">
-        <span onClick={() => filter('all')} className="allList link">
-          {currentView.current === 'all' ? `all to-dos •` : 'all to-dos'}
+        <span onClick={() => filter('all')} className="allList">
+          {currentView.current === 'all' ? (
+            <>
+              <div className="link listTitle">all to-dos</div>
+              <div className="selectedList">•</div>
+            </>
+          ) : (
+            <div className="link listTitle">all to-dos</div>
+          )}
         </span>
         {lists.length > 0 ? (
           <div className="lists">
             {lists.map((list) => (
               <div className="list" key={list._id}>
-                <span onClick={() => filter(`${list._id}`)} className="link">
-                  {currentView.current === `${list._id}` ? `${list.title} •` : list.title}
+                <span className="list" onClick={() => filter(`${list._id}`)}>
+                  {currentView.current === `${list._id}` ? (
+                    <>
+                      <div className="link listTitle">{list.title}</div>
+                      <div className="selectedList">•</div>
+                    </>
+                  ) : (
+                    <div className="link listTitle">{list.title}</div>
+                  )}
                 </span>
                 <span onClick={() => onEdit(list)} className="edit editList">
                   <svg

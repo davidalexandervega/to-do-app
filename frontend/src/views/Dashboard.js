@@ -90,7 +90,7 @@ const Dashboard = () => {
       <div className="dashboard">
         <NewTodo />
         <div className="sortContainer">
-          sort:
+          <div>sort:</div>
           {sortView.current.includes('created') ? (
             <>
               {sortView.current === 'created-increasing' ? (

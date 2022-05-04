@@ -138,10 +138,11 @@ const Todo = ({ todo }) => {
             )}
           </div>
           <div className="todoActions">
+            <div className="error" ref={errorRef}></div>
             <span onClick={() => cancelEdit()} className="cancel">
               <svg
-                width="16"
-                height="16"
+                width="17"
+                height="17"
                 strokeWidth="1.5"
                 viewBox="0 0 24 24"
                 fill="none"
@@ -169,8 +170,8 @@ const Todo = ({ todo }) => {
             </span>
             <span onClick={() => confirmEdit()} className="confirm">
               <svg
-                width="16"
-                height="16"
+                width="17"
+                height="17"
                 strokeWidth="1.5"
                 viewBox="0 0 24 24"
                 fill="none"
@@ -191,7 +192,6 @@ const Todo = ({ todo }) => {
               </svg>
             </span>
           </div>
-          <div className="error" ref={errorRef}></div>
         </div>
       ) : (
         <div className="todo">
@@ -221,8 +221,8 @@ const Todo = ({ todo }) => {
           <div className="todoActions">
             <span onClick={() => toggleEdit()} className="edit">
               <svg
-                width="16"
-                height="16"
+                width="17"
+                height="17"
                 strokeWidth="1.5"
                 viewBox="0 0 24 24"
                 fill="none"
@@ -244,8 +244,8 @@ const Todo = ({ todo }) => {
             </span>
             <span onClick={() => dispatch(deleteTodo(todo._id))} className="delete">
               <svg
-                width="16"
-                height="16"
+                width="17"
+                height="17"
                 strokeWidth="1.5"
                 viewBox="0 0 24 24"
                 fill="none"

@@ -47,7 +47,7 @@ const NewList = () => {
           value={title}
           onChange={onChange}
           size="10"
-          maxLength={10}
+          maxLength={12}
         />
 
         <span onClick={() => onSubmit()} className="new listActions">

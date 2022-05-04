@@ -1,44 +1,44 @@
 .todos {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .todo {
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-    max-width: 400px;
-    width: 70vw;
-    border: 1px solid black;
-    box-shadow: 4px 4px black;
-    background-color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  max-width: 400px;
+  width: 60vw;
+  border: 1px solid black;
+  box-shadow: 4px 4px black;
+  background-color: whitesmoke;
 }
 
-.late  {
-    color: red;
+.late {
+  color: red;
 }
 
 .todoHeader {
-    margin-left: 1px;
-    margin-right: 1px;
-    display: flex;
-    justify-content: space-between;
+  margin-left: 3px;
+  margin-right: 3px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .todoNotes {
-    margin-left: 1px;
+  margin-left: 3px;
 }
 
 .todoActions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 1px;
-    margin-top: 1px;
-    margin-right: 1px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 5px;
+  margin-top: 1px;
+  margin-right: 3px;
 }
 
 .editTodoForm {
-    display: flex;
-    flex-direction: column;
-    margin-left: 1px;
-    margin-right: 1px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 3px;
+  margin-right: 3px;
 }

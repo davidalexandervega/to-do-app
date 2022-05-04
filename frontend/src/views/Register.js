@@ -117,7 +117,7 @@ const Register = () => {
           </div>
         </form>
         <div className="error" ref={errorRef}></div>
-        <span onClick={() => onSubmit()} className="confirm">
+        <span onClick={() => onSubmit()} className="confirm confirmRegister">
           <svg
             width="16"
             height="16"

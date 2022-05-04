@@ -1,75 +1,90 @@
 .innerSidebar {
-    display: flex;
-    flex-direction: column;
-    margin-left: 5px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 5px;
 }
 
 .lists {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .editList {
-    visibility: hidden;
-    margin-left: 5px;
+  visibility: hidden;
+  margin-left: 5px;
 }
 
 .lists:hover {
-    .editList {
-        visibility: visible;
-    }
+  .editList {
+    visibility: visible;
+  }
 }
 
 .allList {
-    margin-top: 5px;
-    margin-bottom: 10px;
-    font-weight: bold;
+  display: flex;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 0.9em;
 }
 
 .list {
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
-    font-weight: bold;
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+.listTitle {
+  max-width: 85px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.selectedList {
+  margin-left: 5px;
+  cursor: default;
 }
 
 .listHeader {
-    display: flex;
-    cursor: default;
-    font-weight: bold;
+  display: flex;
+  cursor: default;
+  font-weight: bold;
 }
 
 .listForm {
-    display: flex;
-    align-items: center;
-    gap: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .listActions {
-    margin-top: 5px;
+  margin-top: 5px;
 }
 
 .newListContainer {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .editListContainer {
-    visibility: hidden;
-    width: 100px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin-top: 25px;
+  visibility: hidden;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 25px;
 }
 
 .renameListHeader {
-    cursor: default;
-    font-size: 0.75em;
+  cursor: default;
+  font-size: 0.75em;
 }
 
 .deleteListHeader {
-    cursor: default;
-    font-size: 0.75em;
-    color: red;
+  cursor: default;
+  font-size: 0.75em;
+  color: red;
 }
