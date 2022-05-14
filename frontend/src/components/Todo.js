@@ -219,7 +219,7 @@ const Todo = ({ todo }) => {
           </div>
           <div className="todoNotes">{todo.notes}</div>
           <div className="todoActions">
-            <span onClick={() => toggleEdit()} className="edit">
+            <span onClick={() => toggleEdit()} className="edit" data-testid="edit">
               <svg
                 width="17"
                 height="17"
