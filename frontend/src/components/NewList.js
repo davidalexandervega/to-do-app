@@ -42,7 +42,7 @@ const NewList = () => {
         <input
           type="text"
           className="formControl"
-          id="title"
+          id="listTitle"
           name="title"
           value={title}
           onChange={onChange}

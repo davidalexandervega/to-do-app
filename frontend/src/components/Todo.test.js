@@ -28,14 +28,8 @@ describe('todo component', () => {
     console.log(edit);
     userEvent.click(edit);
 
-    await waitFor(() =>
-      expect(screen.getByLabelText('title')).toHaveValue('xylophone practice'),
-    );
-    await waitFor(() =>
-      expect(screen.getByLabelText('notes')).toHaveValue('go crazy with it'),
-    );
-    await waitFor(() =>
-      expect(screen.getByLabelText('due date')).toHaveValue('2022-06-01'),
-    );
+    await waitFor(() => expect(screen.getByLabelText('title')).toHaveValue('xylophone practice'));
+    await waitFor(() => expect(screen.getByLabelText('notes')).toHaveValue('go crazy with it'));
+    await waitFor(() => expect(screen.getByLabelText('due date')).toHaveValue('2022-06-01'));
   });
 });
